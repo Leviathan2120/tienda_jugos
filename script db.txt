@@ -1,0 +1,90 @@
+CREATE DATABASE tienda_online CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE tienda_online;
+CREATE TABLE users (
+user_id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100),
+email VARCHAR(100) UNIQUE,
+password_hash VARCHAR(255),
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE addresses (
+address_id INT AUTO_INCREMENT PRIMARY KEY,
+user_id INT,
+name VARCHAR(100),
+street VARCHAR(255),
+city VARCHAR(100),
+state VARCHAR(100),
+postal_code VARCHAR(20),
+country VARCHAR(100),
+phone VARCHAR(20),
+is_default BOOLEAN DEFAULT FALSE,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+CREATE TABLE categories (
+category_id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100) NOT NULL
+);
+CREATE TABLE products (
+product_id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100),
+description TEXT,
+price DECIMAL(10,2),
+stock INT,
+category_id INT,
+image_url VARCHAR(255),
+FOREIGN KEY (category_id) REFERENCES categories(category_id) ON DELETE SET NULL
+);
+CREATE TABLE carts (
+cart_id INT AUTO_INCREMENT PRIMARY KEY,
+user_id INT,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+CREATE TABLE cart_items (
+cart_item_id INT AUTO_INCREMENT PRIMARY KEY,
+cart_id INT,
+product_id INT,
+quantity INT,
+FOREIGN KEY (cart_id) REFERENCES carts(cart_id) ON DELETE CASCADE,
+FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
+);
+CREATE TABLE orders (
+order_id INT AUTO_INCREMENT PRIMARY KEY,
+user_id INT,
+address_id INT,
+total DECIMAL(10,2),
+status ENUM('pendiente', 'pagado', 'enviado', 'cancelado') DEFAULT 'pendiente',
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+FOREIGN KEY (address_id) REFERENCES addresses(address_id) ON DELETE SET NULL
+);
+CREATE TABLE order_items (
+order_item_id INT AUTO_INCREMENT PRIMARY KEY,
+order_id INT,
+product_id INT,
+quantity INT,
+price DECIMAL(10,2),
+FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
+FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE SET NULL
+);
+CREATE TABLE payment_methods (
+method_id INT AUTO_INCREMENT PRIMARY KEY,
+user_id INT,
+type ENUM('tarjeta', 'paypal', 'efectivo'),
+alias VARCHAR(100),
+is_default BOOLEAN DEFAULT FALSE,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+CREATE TABLE payments (
+payment_id INT AUTO_INCREMENT PRIMARY KEY,
+order_id INT,
+method_id INT NULL,
+payment_method ENUM('tarjeta_credito', 'paypal', 'efectivo', 'transferencia') NOT NULL,
+payment_status ENUM('pendiente', 'completado', 'fallido', 'reembolsado') DEFAULT 'pendiente',
+amount DECIMAL(10,2),
+paid_at DATETIME NULL,
+FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
+FOREIGN KEY (method_id) REFERENCES payment_methods(method_id) ON DELETE SET NULL
+);

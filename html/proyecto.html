@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=8,9"> <!--especificar compatibilidad de la pagina con edge-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../imagenes/bootstrap.svg" />
+    <script defer src="https://kit.fontawesome.com/e70a51930d.js" crossorigin="anonymous"></script>
+    <title>Jugos | Tienda Online</title>
+    <link rel="stylesheet" href="../css/proyecto.css">
+    <script defer src="../js/proyecto.JS"></script>
+</head>
+<body class="d-flex flex-column min-vh-100"> <!--establece el componente como display flex y todos sus hijos lo heredan
+                                                 min vh configura la altura relativa al viewport-->
+    <header class="mi-header">
+        <div class="header-container">
+            <nav class="navbar-custom">
+                <a href="proyecto.html" class="navbar-brand">Jugos</a>
+                <ul class="navbar-nav-custom">
+                    <li class="nav-item-custom"><a href="proyecto.html" class="nav-link-custom">Inicio</a></li>
+                    <li class="nav-item-custom dropdown-custom">
+                        <a href="#" class="nav-link-custom">Categoría</a>
+                        <ul class="dropdown-menu-custom">
+                            <li><a href="#" class="dropdown-item-custom">Jugos Naturales</a></li>
+                            <li><a href="#" class="dropdown-item-custom">Detox</a></li>
+                            <li><a href="#" class="dropdown-item-custom">Energéticos</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-custom"><a href="login.html" class="nav-link-custom">Iniciar sesión</a></li>
+                    <li class="nav-item-custom"><a href="register.html" class="nav-link-custom">Registrarse</a></li>
+                    <li class="nav-item-custom">
+                        <a href="carro.html" class="nav-link-custom">
+                            Carrito <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="main-container">
+        <section style="text-align:center; margin-bottom:2rem;">
+            <h1 style="color:#E54949; margin-bottom:0.5rem;">Bienvenido a Jugos</h1>
+            <p style="font-size:1.2rem; color:#444;">
+                Descubre la mejor selección de jugos naturales, detox y energéticos.<br>
+                ¡Compra fácil, rápido y seguro!
+            </p>
+        </section>
+        <section class="product-list">
+            <div class="product-card">
+                <img src="../imagenes/jugo1.jpg" alt="Jugo Naranja">
+                <div class="product-title">Jugo de Naranja</div>
+                <div class="product-price">$30.00</div>
+                <div class="product-actions">
+                    <a href="../php/producto.php?id=1" class="btn">Ver detalle</a>
+                    <form action="../php/carro.php" method="post" style="display:inline;">
+                        <input type="hidden" name="product_id" value="1">
+                        <button type="submit" class="btn">Agregar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="../imagenes/jugo2.jpg" alt="Jugo Verde">
+                <div class="product-title">Jugo Verde Detox</div>
+                <div class="product-price">$35.00</div>
+                <div class="product-actions">
+                    <a href="../php/producto.php?id=2" class="btn">Ver detalle</a>
+                    <form action="../php/carro.php" method="post" style="display:inline;">
+                        <input type="hidden" name="product_id" value="2">
+                        <button type="submit" class="btn">Agregar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="../imagenes/jugo3.jpg" alt="Jugo Zanahoria">
+                <div class="product-title">Jugo de Zanahoria</div>
+                <div class="product-price">$32.00</div>
+                <div class="product-actions">
+                    <a href="../php/producto.php?id=3" class="btn">Ver detalle</a>
+                    <form action="../php/carro.php" method="post" style="display:inline;">
+                        <input type="hidden" name="product_id" value="3">
+                        <button type="submit" class="btn">Agregar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="../imagenes/jugo4.jpg" alt="Jugo Energético">
+                <div class="product-title">Jugo Energético</div>
+                <div class="product-price">$40.00</div>
+                <div class="product-actions">
+                    <a href="../php/producto.php?id=4" class="btn">Ver detalle</a>
+                    <form action="../php/carro.php" method="post" style="display:inline;">
+                        <input type="hidden" name="product_id" value="4">
+                        <button type="submit" class="btn">Agregar</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="mi-footer">
+        <div class="footer-container">
+            <nav>
+                <ul class="footer-list">
+                    <li class="footer-social">
+                        <div class="footer-title">Redes sociales</div>
+                        <div>
+                            <a href="https://twitter.com"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="https://facebook.com"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </li>
+                    <li class="footer-links">
+                        <div class="footer-title">Enlaces</div>
+                        <ul>
+                            <li><a href="#">Contacto</a></li>
+                            <li><a href="#">Términos</a></li>
+                            <li><a href="#">Privacidad</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>
+
+
